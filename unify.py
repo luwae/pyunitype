@@ -8,7 +8,7 @@ class Ref:
         return self.name == other.name
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     def __repr__(self):
         return str(self)
@@ -48,16 +48,16 @@ class Func:
                 self.elems[i] = repl
 
     def __str__(self):
-        s = self.name + "("
+        s = str(self.name) + "("
         for i, elem in enumerate(self.elems):
-            s += repr(elem)
+            s += str(elem)
             if i < len(self.elems) - 1:
                 s += ", "
             else:
                 s += ")"
         return s
 
-    def __repr__(self): # apparently only this is called by dict.__str__, not Func.__str__
+    def __repr__(self): # str([Func("f")]) calls repr for some reason
         return str(self)
 
 class UnificationError(Exception):
